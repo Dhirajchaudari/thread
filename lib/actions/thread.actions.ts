@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 
 import { connectToDB } from "../mongoose";
+import mongoose from 'mongoose'
 
 import User from "../models/user.model";
 import Thread from "../models/thread.model";
@@ -59,7 +60,6 @@ export async function createThread({ text, author, communityId, path }: Params
 ) {
   try {
     connectToDB();
-
     const communityIdObject = await Community.findOne(
       { id: communityId },
       { _id: 1 }
